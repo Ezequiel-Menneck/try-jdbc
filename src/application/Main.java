@@ -23,6 +23,13 @@ public class Main {
             System.out.println(obj);
         }
 
+        System.out.println("\n === TEST 3: seller findByAll ===");
+        List<Seller> findAll = sellerDao.findAll();
+        for (Seller obj2 : findAll) {
+            System.out.println(obj2);
+        }
+
+
 
     }
 }

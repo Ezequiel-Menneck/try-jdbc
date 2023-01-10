@@ -1,6 +1,7 @@
 package application;
 
 import model.dao.DaoFactory;
+import model.dao.DepartamentDao;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -48,7 +49,36 @@ public class Main {
         sellerDao.deleteById(id);
         System.out.println("Delete completed");
 
+
+        DepartamentDao departamentDao = DaoFactory.createDepartmentDao();
+        System.out.println("=== TEST 1: Department findAll ===");
+        List<Department> dep = departamentDao.findAll();
+        for (Department obj : dep) {
+            System.out.println(obj);
+        }
+
+        System.out.println("=== TEST 2: Department findById ===");
+        Department dep2 = departamentDao.findById(1);
+        System.out.println(dep2);
+
+        System.out.println("\n === TEST 3: Department Delete ===");
+        System.out.println("Enter id for delete test: ");
+        int id2 = sc.nextInt();
+        departamentDao.deleteById(id2);
+        System.out.println("Delete completed");
+
+        System.out.println("\n === TEST 5: Department Update ===");
+        dep2 = departamentDao.findById(1);
+        dep2.setName("Mbappé");
+        departamentDao.update(dep2);
+
+        System.out.println("\n === TEST 6: Seller Insert ===");
+        Department newDep = new Department(null, "Menneck");
+        departamentDao.insert(newDep);
+        System.out.println("Inserted! New id = " + newDep.getId());
+
         sc.close();
+
 
     }
 }
